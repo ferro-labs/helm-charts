@@ -1,0 +1,7 @@
+# ArtifactHub repository metadata
+# See: https://artifacthub.io/docs/topics/repositories/helm-charts/#artifacthub-repo.yml
+repositoryID: 8f7b6a21-32e1-443c-837d-7156a598a704
+owners:
+  - name: MitulShah1
+    email: shahmitul005@gmail.com
+  
