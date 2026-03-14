@@ -1,0 +1,49 @@
+# -----------------------------------------------
+# Helm artifacts
+# -----------------------------------------------
+# Packaged chart tarballs (output of `helm package`)
+*.tgz
+
+# Downloaded chart dependencies (output of `helm dependency update`)
+charts/*/charts/
+
+# Dependency lock files are intentionally NOT ignored — commit Chart.lock
+# so downstream installs are reproducible.
+
+# -----------------------------------------------
+# chart-testing / ct temp output
+# -----------------------------------------------
+.ct/
+ct-output/
+
+# -----------------------------------------------
+# OS
+# -----------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# -----------------------------------------------
+# Editors
+# -----------------------------------------------
+.idea/
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*~
+.vscode/extensions.json
+
+# -----------------------------------------------
+# Misc
+# -----------------------------------------------
+tmp/
+*.tmp
+*.bak
+*.orig
