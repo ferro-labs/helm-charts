@@ -8,7 +8,7 @@ Official Helm charts for [Ferro Labs](https://ferrolabs.ai) — starting with th
 
 | Chart | Description | Version |
 | --- | --- | --- |
-| [ai-gateway](./charts/ai-gateway/) | High-performance multi-provider LLM proxy | 0.1.0 |
+| [ai-gateway](./charts/ai-gateway/) | High-performance multi-provider LLM proxy | 0.1.1 |
 
 ## Quick install
 
