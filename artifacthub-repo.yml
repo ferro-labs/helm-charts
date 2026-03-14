@@ -1,11 +1,7 @@
 # ArtifactHub repository metadata
 # See: https://artifacthub.io/docs/topics/repositories/helm-charts/#artifacthub-repo.yml
-#
-# Fill in repositoryID after registering at:
-# artifacthub.io → Control Panel → Add repository → Helm charts
-# URL: https://ferro-labs.github.io/helm-charts
-#
-repositoryID: FILL_IN_AFTER_REGISTERING_ON_ARTIFACTHUB
+repositoryID: d6a130ee-8714-4585-8e2d-d2bc88a7d95a
 owners:
   - name: MitulShah1
     email: mitul.shah@ferrolabs.ai
+  
