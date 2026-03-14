@@ -1,0 +1,28 @@
+# Minimal values used by ct install in CI.
+# Disables optional components and uses stub credentials so the chart
+# renders and installs without real provider keys.
+
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+
+pdb:
+  enabled: false
+
+ingress:
+  enabled: false
+
+secrets:
+  adminApiKey: "ci-test-admin-key"
+  providers:
+    openai: "sk-ci-test-openai"
+
+config:
+  server:
+    port: 8080
+    admin_api_key: "${ADMIN_API_KEY}"
+  strategy:
+    mode: fallback
+  targets:
+    - virtual_key: openai

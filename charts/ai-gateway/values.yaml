@@ -1,0 +1,122 @@
+# Default values for ai-gateway.
+# Override with: helm install ferrogw ferro-labs/ai-gateway -f my-values.yaml
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/ferro-labs/ai-gateway
+  pullPolicy: IfNotPresent
+  # Overrides the image tag; defaults to .Chart.AppVersion when empty.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Create a dedicated ServiceAccount for the gateway pods.
+  create: true
+  # Annotations to add to the ServiceAccount (e.g. for IRSA / Workload Identity).
+  annotations: {}
+  # Override the auto-generated name.
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+  hosts:
+    - host: gateway.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  # - secretName: ferrogw-tls
+  #   hosts:
+  #     - gateway.example.com
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "1000m"
+    memory: "512Mi"
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 70
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+# ---------------------------------------------------------------------------
+# Gateway configuration — rendered into a ConfigMap and mounted at
+# /etc/ferrogw/config.yaml inside each pod.
+# ---------------------------------------------------------------------------
+config:
+  server:
+    port: 8080
+    admin_api_key: "${ADMIN_API_KEY}"
+
+  strategy:
+    mode: fallback
+
+  targets: []
+  # - virtual_key: openai
+  #   retry:
+  #     attempts: 3
+  #     retry_on_status: [429, 502, 503, 504]
+  # - virtual_key: anthropic
+
+  plugins: []
+  # - name: rate-limit
+  #   type: ratelimit
+  #   stage: before_request
+  #   enabled: true
+  #   config:
+  #     requests_per_second: 100
+  #     burst: 200
+
+# ---------------------------------------------------------------------------
+# Provider API keys — stored in a Kubernetes Secret.
+# Set values via --set or use an external-secrets / sealed-secrets operator.
+# ---------------------------------------------------------------------------
+secrets:
+  # Random secret for /admin endpoints; required.
+  adminApiKey: ""
+  # Map of provider name → API key. Keys are uppercased and suffixed with
+  # _API_KEY inside the Secret (e.g. openai → OPENAI_API_KEY).
+  providers: {}
+  # openai: "sk-..."
+  # anthropic: "sk-ant-..."
+  # xai: "xai-..."
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
