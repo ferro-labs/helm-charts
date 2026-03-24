@@ -5,8 +5,8 @@ description: >
   6 routing strategies, and an extensible plugin pipeline.
 
 type: application
-version: 0.1.1
-appVersion: "1.0.0-rc.1"
+version: 1.0.0
+appVersion: "1.0.0"
 
 keywords:
   - ai-gateway
@@ -27,7 +27,7 @@ maintainers:
 icon: https://raw.githubusercontent.com/ferro-labs/ai-gateway/main/web/logo.png
 
 annotations:
-  artifacthub.io/prerelease: "true"
+  artifacthub.io/prerelease: "false"
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Documentation
