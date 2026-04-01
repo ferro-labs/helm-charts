@@ -5,8 +5,8 @@ description: >
   6 routing strategies, and an extensible plugin pipeline.
 
 type: application
-version: 1.0.1
-appVersion: "1.0.1"
+version: 1.0.3
+appVersion: "1.0.3"
 
 keywords:
   - ai-gateway
