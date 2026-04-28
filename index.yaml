@@ -12,6 +12,41 @@ entries:
           url: https://artifacthub.io/packages/helm/ferro-labs/ai-gateway
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 1.0.5
+    created: "2026-04-28T09:23:32.108661463Z"
+    description: 'A high-performance, multi-provider LLM proxy supporting 20+ AI providers,
+      6 routing strategies, and an extensible plugin pipeline. '
+    digest: e92dac8d7ff0e0cbf30acec95f4d2acb1795f43247e9b972c8f1355a72dbd72d
+    home: https://ferrolabs.ai
+    icon: https://raw.githubusercontent.com/ferro-labs/ai-gateway/main/web/logo.png
+    keywords:
+    - ai-gateway
+    - llm
+    - llm-proxy
+    - openai
+    - anthropic
+    - ferrolabs
+    maintainers:
+    - name: MitulShah1
+      url: https://github.com/MitulShah1
+    name: ai-gateway
+    sources:
+    - https://github.com/ferro-labs/ai-gateway
+    type: application
+    urls:
+    - https://github.com/ferro-labs/helm-charts/releases/download/ai-gateway-1.0.5/ai-gateway-1.0.5.tgz
+    version: 1.0.5
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://docs.ferrolabs.ai
+        - name: Source
+          url: https://github.com/ferro-labs/ai-gateway
+        - name: ArtifactHub
+          url: https://artifacthub.io/packages/helm/ferro-labs/ai-gateway
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 1.0.4
     created: "2026-04-09T07:14:51.212272218Z"
     description: 'A high-performance, multi-provider LLM proxy supporting 20+ AI providers,
@@ -211,4 +246,4 @@ entries:
     urls:
     - https://github.com/ferro-labs/helm-charts/releases/download/ai-gateway-0.1.0/ai-gateway-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-09T07:14:51.212299118Z"
+generated: "2026-04-28T09:23:32.108695958Z"
