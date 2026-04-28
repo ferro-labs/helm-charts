@@ -10,7 +10,7 @@ Helm chart for the [Ferro Labs AI Gateway](https://github.com/ferro-labs/ai-gate
 helm repo add ferro-labs https://ferro-labs.github.io/helm-charts
 helm repo update
 helm install ferrogw ferro-labs/ai-gateway \
-  --version 1.0.4 \
+  --version 1.0.5 \
   --set secrets.adminApiKey="your-admin-key" \
   --set secrets.providers.openai="sk-..." \
   --set secrets.providers.anthropic="sk-ant-..."
@@ -25,7 +25,7 @@ helm install ferrogw ferro-labs/ai-gateway \
 
 ```bash
 helm install ferrogw ferro-labs/ai-gateway \
-  --version 1.0.4 \
+  --version 1.0.5 \
   --namespace ferrogw \
   --create-namespace \
   -f my-values.yaml

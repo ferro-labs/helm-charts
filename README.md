@@ -8,7 +8,7 @@ Official Helm charts for [Ferro Labs](https://ferrolabs.ai) — starting with th
 
 | Chart | Description | Version |
 | --- | --- | --- |
-| [ai-gateway](./charts/ai-gateway/) | High-performance multi-provider LLM proxy | 1.0.4 |
+| [ai-gateway](./charts/ai-gateway/) | High-performance multi-provider LLM proxy | 1.0.5 |
 
 ## Quick install
 
@@ -17,7 +17,7 @@ helm repo add ferro-labs https://ferro-labs.github.io/helm-charts
 helm repo update
 
 helm install ferrogw ferro-labs/ai-gateway \
-  --version 1.0.4 \
+  --version 1.0.5 \
   --set secrets.adminApiKey="your-admin-key" \
   --set secrets.providers.openai="sk-..." \
   --set secrets.providers.anthropic="sk-ant-..."
