@@ -103,6 +103,18 @@ config:
   #     requests_per_second: 100
   #     burst: 200
 
+  # OpenTelemetry tracing (v1.1.0+). Off by default — a zero-allocation no-op
+  # until an OTLP endpoint is configured. ${ENV} values resolve from the Secret.
+  # observability:
+  #   tracing:
+  #     enabled: true
+  #     endpoint: "http://otel-collector:4317"   # https:// → TLS; http:// or host:port → plaintext
+  #     protocol: grpc                            # grpc | http
+  #     sample_ratio: 1.0
+  #     privacy_level: metadata                   # none | metadata | full
+  #     headers:
+  #       authorization: "${OTEL_AUTH_HEADER}"
+
 # ---------------------------------------------------------------------------
 # Provider API keys — stored in a Kubernetes Secret.
 # Set values via --set or use an external-secrets / sealed-secrets operator.
