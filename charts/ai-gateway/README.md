@@ -2,7 +2,7 @@
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/ferro-labs)](https://artifacthub.io/packages/helm/ferro-labs/ai-gateway)
 
-Helm chart for the [Ferro Labs AI Gateway](https://github.com/ferro-labs/ai-gateway) — a high-performance, multi-provider LLM proxy supporting 20+ AI providers, 6 routing strategies, and an extensible plugin pipeline.
+Helm chart for the [Ferro Labs AI Gateway](https://github.com/ferro-labs/ai-gateway) — a high-performance, multi-provider LLM proxy supporting 31 AI providers, 8 routing strategies, and an extensible plugin pipeline.
 
 ## TL;DR
 
@@ -10,7 +10,7 @@ Helm chart for the [Ferro Labs AI Gateway](https://github.com/ferro-labs/ai-gate
 helm repo add ferro-labs https://ferro-labs.github.io/helm-charts
 helm repo update
 helm install ferrogw ferro-labs/ai-gateway \
-  --version 1.1.1 \
+  --version 1.1.2 \
   --set secrets.adminApiKey="your-admin-key" \
   --set secrets.providers.openai="sk-..." \
   --set secrets.providers.anthropic="sk-ant-..."
@@ -25,7 +25,7 @@ helm install ferrogw ferro-labs/ai-gateway \
 
 ```bash
 helm install ferrogw ferro-labs/ai-gateway \
-  --version 1.1.1 \
+  --version 1.1.2 \
   --namespace ferrogw \
   --create-namespace \
   -f my-values.yaml
