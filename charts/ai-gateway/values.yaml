@@ -78,20 +78,35 @@ pdb:
 # ---------------------------------------------------------------------------
 # Gateway configuration — rendered into a ConfigMap and mounted at
 # /etc/ferrogw/config.yaml inside each pod.
+#
+# Keys here must match the gateway's config schema exactly: since v1.1.22 an
+# unknown key is a hard load error. The listen port is NOT a config key — it
+# comes from the PORT env var, set from service.targetPort above.
 # ---------------------------------------------------------------------------
 config:
-  server:
-    port: 8080
-    admin_api_key: "${ADMIN_API_KEY}"
-
   strategy:
     mode: fallback
+
+  # Bounds a single non-streaming request end to end — plugin stages, provider
+  # call, and every retry and fallback attempt combined (v1.2.0). Omitted means
+  # no gateway-imposed deadline.
+  # request_timeout: 60s
+
+  # What to do with a parameter the target provider cannot express (v1.2.0):
+  # warn (default — log and forward) | drop | reject (400 unsupported_parameter).
+  # compatibility:
+  #   on_unsupported_param: warn
 
   targets: []
   # - virtual_key: openai
   #   retry:
   #     attempts: 3
   #     retry_on_status: [429, 502, 503, 504]
+  #   # Bound in-flight requests to this provider; overflow sheds with
+  #   # 429 provider_saturated rather than queueing without limit (v1.2.0).
+  #   concurrency:
+  #     max_concurrency: 64
+  #     queue_size: 128
   # - virtual_key: anthropic
 
   plugins: []
@@ -120,7 +135,8 @@ config:
 # Set values via --set or use an external-secrets / sealed-secrets operator.
 # ---------------------------------------------------------------------------
 secrets:
-  # Random secret for /admin endpoints; required.
+  # Master credential for /admin and /metrics; required. Mounted as MASTER_KEY.
+  # Generate one with `ferrogw init`.
   adminApiKey: ""
   # Map of provider name → API key. Keys are uppercased and suffixed with
   # _API_KEY inside the Secret (e.g. openai → OPENAI_API_KEY).

@@ -43,8 +43,11 @@ spec:
             - "-config=/etc/ferrogw/config.yaml"
           ports:
             - name: http
-              containerPort: {{ .Values.config.server.port | default 8080 }}
+              containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+          env:
+            - name: PORT
+              value: {{ .Values.service.targetPort | quote }}
           envFrom:
             - secretRef:
                 name: {{ include "ai-gateway.fullname" . }}
@@ -52,16 +55,21 @@ spec:
             - name: config
               mountPath: /etc/ferrogw
               readOnly: true
+          # /readyz gates on config, store reachability, and provider circuits —
+          # a pod with every provider circuit open is pulled from the Service.
           readinessProbe:
             httpGet:
-              path: /health
+              path: /readyz
               port: http
             initialDelaySeconds: 5
             periodSeconds: 10
             failureThreshold: 3
+          # /livez is process-only, never dependency-gated. /health reports 503
+          # when no provider is reachable, which as a liveness probe would restart
+          # every pod during a provider outage.
           livenessProbe:
             httpGet:
-              path: /health
+              path: /livez
               port: http
             initialDelaySeconds: 15
             periodSeconds: 30
